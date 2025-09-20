@@ -1,6 +1,7 @@
 import requests
 import time
 
+
 def request_check(url):
 
     try:
@@ -15,10 +16,3 @@ def request_check(url):
             return "Connection failed with code: " + str(response.status_code)
     except requests.exceptions.RequestException as e:
         return "Connection failed with exception: " + str(e)+"."
-
-def main():
-    url_check = 'https://www.djangoproject.com/download/'
-    request_check(url_check)
-
-if __name__ == "__main__":
-    main()
