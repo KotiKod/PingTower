@@ -1,8 +1,9 @@
 import asyncio
 
 from jsonschema import validate, ValidationError
+
 ssl_schema = {
-        "type": "object",
+    "type": "object",
     "properties": {
         "ok": {"type": "boolean"},
         "url": {"type": "string"},
@@ -64,67 +65,69 @@ webdriver_schema = {
 }
 
 load_schema = {
-      "type": "object",
-  "properties": {
-    "url": {
-      "type": "string",
-      "format": "uri"
-    },
-    "total_requests": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "successful_requests": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "failed_requests": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "error_percentage": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100
-    },
-    "average_response_time_sec": {
-      "type": "number",
-      "minimum": 0
-    },
-    "total_time_sec": {
-      "type": "number",
-      "minimum": 0
-    },
-    "status_breakdown": {
-      "type": "object",
-      "patternProperties": {
-        "^[0-9]{3}$": {
-          "type": "integer",
-          "minimum": 0
+    "type": "object",
+    "properties": {
+        "url": {
+            "type": "string",
+            "format": "uri"
+        },
+        "total_requests": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "successful_requests": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "failed_requests": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "error_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "average_response_time_sec": {
+            "type": "number",
+            "minimum": 0
+        },
+        "total_time_sec": {
+            "type": "number",
+            "minimum": 0
+        },
+        "status_breakdown": {
+            "type": "object",
+            "patternProperties": {
+                "^[0-9]{3}$": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "additionalProperties": False
         }
-      },
-      "additionalProperties": False
-    }
-  },
-  "required": [
-    "url",
-    "total_requests",
-    "successful_requests",
-    "failed_requests",
-    "error_percentage",
-    "average_response_time_sec",
-    "total_time_sec",
-    "status_breakdown"
-  ],
-  "additionalProperties": False
+    },
+    "required": [
+        "url",
+        "total_requests",
+        "successful_requests",
+        "failed_requests",
+        "error_percentage",
+        "average_response_time_sec",
+        "total_time_sec",
+        "status_breakdown"
+    ],
+    "additionalProperties": False
 }
 
-def validation(url, schema):
+
+def validation(JSON, schema):
     try:
-        validate(instance=url, schema=schema)
+        validate(instance=JSON, schema=schema)
         return True
     except ValidationError as e:
         return False
+
 
 def main():
     from StatusHTTP import request_check
@@ -140,6 +143,7 @@ def main():
     print(validation(check_this, http_schema))
     print(validation(cheak_again, dns_schema))
     print(validation(chek, ssl_schema))
+
 
 if __name__ == "__main__":
     main()
