@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a91c69fe-ffce-4cb5-bdab-0cdb7f9bfa9c" name="Changes" comment="upd">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +41,7 @@
   "keyToString": {
     "Python.DNSCheck.executor": "Run",
     "Python.Repository.executor": "Run",
+    "Python.main.executor": "Run",
     "Python.requestCheck.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -106,7 +108,7 @@
       <updated>1758299390122</updated>
       <workItem from="1758299401878" duration="3061000" />
       <workItem from="1758302517465" duration="267000" />
-      <workItem from="1758361976510" duration="2495000" />
+      <workItem from="1758361976510" duration="2856000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <option name="closed" value="true" />
@@ -180,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758364375876</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="upd">
+      <option name="closed" value="true" />
+      <created>1758364498971</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1758364498971</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +207,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PingTower$DNSCheck.coverage" NAME="DNSCheck Coverage Results" MODIFIED="1758363430088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App/BackEnd/ScriptsForChecking" />
+    <SUITE FILE_PATH="coverage/PingTower$main.coverage" NAME="main Coverage Results" MODIFIED="1758364720842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App" />
     <SUITE FILE_PATH="coverage/PingTower$requestCheck.coverage" NAME="requestCheck Coverage Results" MODIFIED="1758363688056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App/BackEnd/ScriptsForChecking" />
     <SUITE FILE_PATH="coverage/PingTower$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1758299778773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database/Repository" />
   </component>
