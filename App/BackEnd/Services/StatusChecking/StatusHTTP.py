@@ -13,9 +13,9 @@ def request_check(url):
         if response.status_code == 200:
             return {"ok": True, "url": url, "code": 200, "time_to_connect": elapsed}
         else:
-            return {"ok": False, "url": url, "code": response.status_code}
+            return {"ok": False, "url": url, "code": (response.status_code)}
     except requests.exceptions.RequestException as e:
-        return {"ok": False, "url": url, "code": e}
+        return {"ok": False, "url": url, "code": str(e)}
 
 def main():
     url = "https://www.google.com"
