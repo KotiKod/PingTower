@@ -44,6 +44,81 @@ dns_schema = {
     "additionalProperties": True,
 }
 
+api_schema = {
+    "type": "object",
+    "properties": {
+        "url": {"type": "string"},
+        "slovar": {"type": "object"},
+    },
+    "required": ["url", "slovar"],
+    "additionalProperties": True,
+}
+
+webdriver_schema = {
+    "type": "object",
+    "properties": {
+        "time_to_load": {"type": "number"},
+    },
+    "required": ["time_to_load"],
+    "additionalProperties": True,
+}
+
+load_schema = {
+      "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "total_requests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "successful_requests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "failed_requests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "error_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "average_response_time_sec": {
+      "type": "number",
+      "minimum": 0
+    },
+    "total_time_sec": {
+      "type": "number",
+      "minimum": 0
+    },
+    "status_breakdown": {
+      "type": "object",
+      "patternProperties": {
+        "^[0-9]{3}$": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": False
+    }
+  },
+  "required": [
+    "url",
+    "total_requests",
+    "successful_requests",
+    "failed_requests",
+    "error_percentage",
+    "average_response_time_sec",
+    "total_time_sec",
+    "status_breakdown"
+  ],
+  "additionalProperties": False
+}
+
 def validation(url, schema):
     try:
         validate(instance=url, schema=schema)
