@@ -1,13 +1,55 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Template</h1>
-</body>
-</html>
+{% extends 'interface/base.html'%}
+{% load static %}
+
+{% block title %}
+PAGE 1
+{% endblock %}
+
+{% block extra_css %}
+<link type="text/css" href="{% static 'interface/css/main_pages.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<!-- Поисковая строка -->
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Введите URL ресурса...">
+                    <button class="btn btn-primary" type="button">Добавить ресурс</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопки-переключатели проверок -->
+    <div class="container mt-4">
+        <div class="check-buttons">
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Проверка работоспособности эндпоинтов
+            </button>
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Проверка сертификата
+            </button>
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Проверка разрешения DNS имен
+            </button>
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Проверка доступности сайта
+            </button>
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Проверка времени полной загрузки страницы
+            </button>
+            <button type="button" class="btn btn-outline-primary check-btn">
+                Валидация JSON
+            </button>
+        </div>
+    </div>
+
+    <!-- Основное содержимое страницы -->
+    <main class="container mt-4">
+        <!-- Здесь будет основной контент -->
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-def index(request):
+def main(request):
     return render (request,'interface/index.html')
 
-def about(request):
-    return HttpResponse("<h4>About</4>")
+def my_sites(request):
+    return render (request,'interface/my_sites.html')
+
+def account(request):
+    return render (request,'interface/account.html')

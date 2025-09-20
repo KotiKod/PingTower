@@ -1,0 +1,78 @@
+{% extends 'interface/base.html'%}
+{% load static %}
+
+{% block title %}
+Мои сайты
+{% endblock %}
+
+{% block extra_css %}
+<link type="text/css" href="{% static 'interface/css/my_sites.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Боковая панель слева -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h5>Мои сайты</h5>
+                </div>
+                <div class="sites-list">
+                    <button class="site-item" data-site="example.com">
+                        example.com
+                    </button>
+                    <button class="site-item" data-site="google.com">
+                        google.com
+                    </button>
+                    <button class="site-item" data-site="github.com">
+                        github.com
+                    </button>
+                    <button class="site-item" data-site="yandex.ru">
+                        yandex.ru
+                    </button>
+                    <button class="site-item" data-site="stackoverflow.com">
+                        stackoverflow.com
+                    </button>
+                    <!-- Элементы могут добавляться динамически -->
+                </div>
+            </div>
+
+            <!-- Основной контент по центру -->
+            <div class="main-content">
+                <div class="site-details" id="site-details">
+                    <h3>Выберите сайт из списка слева</h3>
+                    <p class="text-muted">Информация о выбранном сайте появится здесь</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Обработчик кликов по элементам списка
+        document.querySelectorAll('.site-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Убираем активный класс у всех элементов
+                document.querySelectorAll('.site-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+
+                // Добавляем активный класс к выбранному элементу
+                this.classList.add('active');
+
+                // Получаем название сайта из data-атрибута
+                const siteName = this.getAttribute('data-site');
+
+                // Отображаем название в центральном контейнере
+                document.getElementById('site-details').innerHTML = `
+                    <h2>${siteName}</h2>
+                    <div class="mt-4">
+                        <p>Здесь будет детальная информация о сайте</p>
+                        <p>Статус: <span class="badge bg-success status-badge">Работает</span></p>
+                        <p>Время ответа: 156 мс</p>
+                        <p>Последняя проверка: 5 минут назад</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
+{% endblock %}

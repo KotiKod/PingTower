@@ -1,0 +1,39 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Подключение Bootstrap -->
+    <link type="text/css" href="{% static 'interface/css/my_sites.css' %}" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center py-3 px-4 bg-light border-bottom">
+        <div class="logo">
+            <h3 class="m-0">КОТ И КОД</h3>
+        </div>
+        <ul class="nav nav-pills header-nav">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a href="/my_sites" class="nav-link">Мои сайты</a>
+            </li>
+            <li class="nav-item">
+                <a href="/account" class="nav-link">Личный кабинет</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
