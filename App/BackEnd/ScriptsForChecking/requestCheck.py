@@ -11,8 +11,16 @@ def request_check(url):
 
 
         if response.status_code == 200:
-            return "Success. Connection code: " + str(response.status_code) + ". Connection time: " + str(elapsed) +"s."
+            return {"ok": True, "code": 200, "time_to_connect": elapsed}
         else:
-            return "Connection failed with code: " + str(response.status_code)
+            return {"ok": False, "code": response.status_code}
     except requests.exceptions.RequestException as e:
-        return "Connection failed with exception: " + str(e)+"."
+        return {"ok": False, "code": e}
+
+def main():
+    url = "https://www.google.com"
+    result = request_check(url)
+    print(result)
+
+if __name__ == "__main__":
+    main()
