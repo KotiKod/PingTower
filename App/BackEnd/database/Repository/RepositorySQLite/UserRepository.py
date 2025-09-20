@@ -10,15 +10,15 @@ class UserRepository(BaseRepository):
     def create(self, data: Dict[str, Any]) -> int:
         try:
             cursor = self._execute_query(
-                'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
-                (data['username'], data['email'], data['password_hash'])
+                'INSERT INTO users (login, password) VALUES (?, ?)',
+                (data['login'], data['password'])
             )
             self._commit()
             user_id = cursor.lastrowid
-            print(f"✅ Пользователь {data['username']} создан с ID: {user_id}")
+            print(f"✅ Пользователь {data['login']} создан с ID: {user_id}")
             return user_id
         except sqlite3.IntegrityError:
-            print(f"❌ Пользователь с username {data['username']} уже существует")
+            print(f"❌ Пользователь с username {data['login']} уже существует")
             raise
 
     def get_by_id(self, user_id: int) -> Optional[Dict[str, Any]]:
@@ -27,14 +27,14 @@ class UserRepository(BaseRepository):
         return dict(user) if user else None
 
     def get_all(self) -> List[Dict[str, Any]]:
-        cursor = self._execute_query('SELECT * FROM users ORDER BY created_at DESC')
+        cursor = self._execute_query('SELECT * FROM users ORDER BY id DESC')
         return [dict(user) for user in cursor.fetchall()]
 
-    def update(self, user_id: int, data: Dict[str, Any]) -> bool:
+    def update(self, id: int, data: Dict[str, Any]) -> bool:
         try:
             self._execute_query(
-                'UPDATE users SET username = ?, email = ? WHERE id = ?',
-                (data['username'], data['email'], user_id)
+                'UPDATE users SET login = ?, password = ? WHERE id = ?',
+                (data['login'], data['password'], id)
             )
             self._commit()
             return True

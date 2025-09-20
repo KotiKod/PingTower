@@ -49,24 +49,18 @@ class DatabaseSingleton:
                 conn.execute('''
                     CREATE TABLE IF NOT EXISTS users (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        username TEXT UNIQUE NOT NULL,
-                        email TEXT UNIQUE NOT NULL,
-                        password_hash TEXT NOT NULL,
-                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                        is_active BOOLEAN DEFAULT TRUE
+                        login TEXT UNIQUE NOT NULL,
+                        password TEXT NOT NULL
                     )
                 ''')
 
                 # Таблица статей
                 conn.execute('''
-                    CREATE TABLE IF NOT EXISTS articles (
+                    CREATE TABLE IF NOT EXISTS websites (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        title TEXT NOT NULL,
+                        url TEXT NOT NULL,
                         content TEXT NOT NULL,
-                        author_id INTEGER NOT NULL,
-                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                        is_published BOOLEAN DEFAULT FALSE,
+                        user_id INTEGER NOT NULL,
                         FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
                     )
                 ''')
