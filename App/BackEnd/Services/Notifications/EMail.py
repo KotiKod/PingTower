@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(sender_email: str, sender_password: str, receiver_email: str, subject: str, body: str):
     """
-    Отправка письма через SMTP (по умолчанию Gmail).
+    Отправка письма через SMTP (по умолчанию Gmail)
     :param sender_email: адрес отправителя
     :param sender_password: пароль приложения/SMTP пароль
     :param receiver_email: адрес получателя
