@@ -1,9 +1,10 @@
-from App.BackEnd.ScriptsForChecking.requestCheck import request_check
-
+from App.BackEnd.Services.StatusChecking.StatusHTTP import request_check
+from App.BackEnd.Services.StatusChecking.DNSCheck import resolve_url
 
 def main():
     url_check = 'https://www.djangoproject.com/download/'
-    request_check(url_check)
+    print(request_check(url_check))
+    print(resolve_url(url_check))
 
 
 if __name__ == "__main__":
