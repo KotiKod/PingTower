@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a15d76f-f396-4656-9186-1bb359ce4f8a" name="Changes" comment="Test 12 Страница Мои сайты">
-      <change afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/my_sites.css" afterDir="false" />
+    <list default="true" id="4a15d76f-f396-4656-9186-1bb359ce4f8a" name="Changes" comment="Test 14 Приемлемый интерфейс Главной и моих сайтов (Шаблоны)">
+      <change afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/main_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/my_sites.css" beforeDir="false" afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/my_sites.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/static/interface/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/my_sites.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/my_sites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/FrontEnd/monitor/interface/templates/interface/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758376375147</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Test 14 Приемлемый интерфейс Главной и моих сайтов (Шаблоны)">
+      <option name="closed" value="true" />
+      <created>1758377593364</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1758377593364</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +176,7 @@
     <MESSAGE value="Test 10 Архитектура, стили и header" />
     <MESSAGE value="Test 11 Архитектура, стили и header" />
     <MESSAGE value="Test 12 Страница Мои сайты" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test 12 Страница Мои сайты" />
+    <MESSAGE value="Test 14 Приемлемый интерфейс Главной и моих сайтов (Шаблоны)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test 14 Приемлемый интерфейс Главной и моих сайтов (Шаблоны)" />
   </component>
 </project>

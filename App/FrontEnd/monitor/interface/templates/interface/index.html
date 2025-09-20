@@ -1,6 +1,12 @@
 {% extends 'interface/base.html'%}
+{% load static %}
+
 {% block title %}
 PAGE 1
+{% endblock %}
+
+{% block extra_css %}
+<link type="text/css" href="{% static 'interface/css/main_pages.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -9,7 +15,7 @@ PAGE 1
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="input-group">
-<!--                    <input type="text" class="form-control" placeholder="Введите URL сайта, который нужно проверить...">-->
+                    <input type="text" class="form-control" placeholder="Введите URL ресурса...">
                     <button class="btn btn-primary" type="button">Добавить ресурс</button>
                 </div>
             </div>
