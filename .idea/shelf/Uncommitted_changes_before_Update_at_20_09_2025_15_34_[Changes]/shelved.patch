@@ -1,0 +1,62 @@
+Index: App/FrontEnd/monitor/interface/templates/interface/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"ru\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\"\r\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <title>Document</title>\r\n</head>\r\n<body>\r\n    <h1>Template</h1>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/App/FrontEnd/monitor/interface/templates/interface/index.html b/App/FrontEnd/monitor/interface/templates/interface/index.html
+--- a/App/FrontEnd/monitor/interface/templates/interface/index.html	(revision 3228aaec38743730dee48e745306a5d2ad67a7e8)
++++ b/App/FrontEnd/monitor/interface/templates/interface/index.html	(date 1758363794295)
+@@ -1,13 +1,11 @@
+-<!doctype html>
+-<html lang="ru">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport"
+-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+-    <title>Document</title>
+-</head>
+-<body>
+-    <h1>Template</h1>
+-</body>
+-</html>
+\ No newline at end of file
++{% extends 'interface/base.html' %}
++
++{% block title %}
++Страница 1
++{% endblock %}
++
++{% block content %}
++Инфо 1
++{% endblock %}
++
++
+Index: App/FrontEnd/monitor/interface/templates/interface/base.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/App/FrontEnd/monitor/interface/templates/interface/base.html b/App/FrontEnd/monitor/interface/templates/interface/base.html
+new file mode 100644
+--- /dev/null	(date 1758364475966)
++++ b/App/FrontEnd/monitor/interface/templates/interface/base.html	(date 1758364475966)
+@@ -0,0 +1,15 @@
++<!doctype html>
++<html lang="ru">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport"
++          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
++    <meta http-equiv="X-UA-Compatible" content="ie=edge">
++    <title>{% block title %}{% endblock %}</title>
++    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
++</head>
++<body>
++    {% block content %}
++    {% endblock %}
++</body>
++</html>
+\ No newline at end of file
