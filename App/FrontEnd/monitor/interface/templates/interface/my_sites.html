@@ -43,11 +43,107 @@
                     <h3>Выберите сайт из списка слева</h3>
                     <p class="text-muted">Информация о выбранном сайте появится здесь</p>
                 </div>
+
+                <!-- Контейнер для графика -->
+                <div class="chart-container mt-4">
+                    <canvas id="responseTimeChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Подключение Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
+        let responseTimeChart = null;
+
+        // Функция инициализации графика
+        function initChart() {
+            const ctx = document.getElementById('responseTimeChart').getContext('2d');
+
+            responseTimeChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Время ответа (мс)',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Миллисекунды',
+                                color: '#2c3e50',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Время проверки',
+                                color: '#2c3e50',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Функция обновления данных графика
+        function updateChartData(siteName) {
+            if (!responseTimeChart) return;
+
+            // Заглушка с тестовыми данными
+            const testData = {
+                'example.com': [120, 150, 130, 140, 160, 125, 135],
+                'google.com': [80, 75, 85, 90, 78, 82, 88],
+                'github.com': [200, 180, 190, 210, 195, 185, 205],
+                'yandex.ru': [100, 95, 110, 105, 98, 102, 108],
+                'stackoverflow.com': [150, 145, 160, 155, 148, 152, 158]
+            };
+
+            const testLabels = ['10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30'];
+
+            // Обновляем данные графика
+            responseTimeChart.data.labels = testLabels;
+            responseTimeChart.data.datasets[0].data = testData[siteName] || [];
+            responseTimeChart.data.datasets[0].label = `Время ответа - ${siteName}`;
+
+            responseTimeChart.update();
+        }
+
         // Обработчик кликов по элементам списка
         document.querySelectorAll('.site-item').forEach(item => {
             item.addEventListener('click', function() {
@@ -62,17 +158,31 @@
                 // Получаем название сайта из data-атрибута
                 const siteName = this.getAttribute('data-site');
 
-                // Отображаем название в центральном контейнере
+                // Отображаем информацию о сайте
                 document.getElementById('site-details').innerHTML = `
                     <h2>${siteName}</h2>
                     <div class="mt-4">
-                        <p>Здесь будет детальная информация о сайте</p>
+                        <p>Статистика доступности и времени ответа</p>
                         <p>Статус: <span class="badge bg-success status-badge">Работает</span></p>
-                        <p>Время ответа: 156 мс</p>
-                        <p>Последняя проверка: 5 минут назад</p>
+                        <p>Среднее время ответа: 145 мс</p>
+                        <p>Последняя проверка: 2 минуты назад</p>
                     </div>
                 `;
+
+                // Обновляем график для выбранного сайта
+                updateChartData(siteName);
             });
+        });
+
+        // Инициализация графика при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+
+            // Автоматически выбираем первый сайт при загрузке
+            const firstSite = document.querySelector('.site-item');
+            if (firstSite) {
+                firstSite.click();
+            }
         });
     </script>
 {% endblock %}
