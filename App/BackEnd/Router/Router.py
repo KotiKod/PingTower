@@ -15,6 +15,7 @@ class Router(View):
 
     def __init__(self, repo: WebsiteRepository):
         self.repo = repo
+        super().__init__()
 
     def post(self, request, *args, **kwargs):
         try:
