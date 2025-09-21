@@ -67,7 +67,7 @@ class SQLite:
                         loading_check BOOLEAN NOT NULL,
                         validation BOOLEAN NOT NULL,
                         time_period INTEGER NOT NULL,
-                        FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
+                        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
                     )
                 ''')
 
@@ -84,7 +84,7 @@ class SQLite:
                         loading_check BOOLEAN,
                         validation BOOLEAN,
                         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                        FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
+                        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
                     )
                 ''')
 

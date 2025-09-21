@@ -14,7 +14,7 @@ class Controller:
         self.website = website
 
     def websiteChecking(self):
-        check = Check
+        check = Check()
         if self.website.validation:
             if self.website.status_http:
                 request_check = StatusHTTP.request_check(self.website.url)
@@ -48,4 +48,6 @@ class Controller:
         if self.website.loading_check:
             webdriver_check = WebdriverCheck.webdriver_check(self.website.url)
             check.loading_check = webdriver_check["time_to_load"]
+
+        return check
             

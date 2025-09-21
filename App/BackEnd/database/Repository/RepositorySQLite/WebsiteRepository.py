@@ -10,21 +10,28 @@ class WebsiteRepository(BaseRepository):
 
     def create(self, website: Website) -> None:
         """Сохраняет или обновляет website в базе данных"""
-        with sqlite3.connect(self.db) as conn:
+        # conn = self.db
+        conn = sqlite3.connect("data.db")
+        try:
             cursor = conn.execute('''
-                INSERT INTO websites (url, user_id, status_http, dns_check, ssl_check, 
-                                     ep_check, loading_check, validation, time_period)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ''', (website.url, website.user_id, website.status_http, website.dns_check,
-                  website.ssl_check, website.ep_check, website.loading_check,
-                  website.validation, website.time_period))
+                        INSERT INTO websites (url, user_id, status_http, dns_check, ssl_check, 
+                                             ep_check, loading_check, validation, time_period)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                website.url, website.user_id, int(website.status_http),
+                int(website.dns_check), int(website.ssl_check),
+                int(website.ep_check), int(website.loading_check),
+                int(website.validation), website.time_period
+            ))
             website.id = cursor.lastrowid
-
-            return
+            conn.commit()
+        finally:
+            conn.close()
 
     def get_websites(self, user_id: int) -> List[Website]:
         """Получает все websites по ID пользователя"""
-        with sqlite3.connect(self.db) as conn:
+        conn = sqlite3.connect("data.db")
+        try:
             cursor = conn.execute('''
                 SELECT id, url, user_id, status_http, dns_check, ssl_check, 
                        ep_check, loading_check, validation, time_period
@@ -47,8 +54,10 @@ class WebsiteRepository(BaseRepository):
                     time_period=row[9]
                 )
                 websites.append(website)
-
-            return websites
+            conn.commit()
+        finally:
+            conn.close()
+        return websites
 
     def delete(self, website_id: int) -> bool:
         """Удаляет website по ID"""
