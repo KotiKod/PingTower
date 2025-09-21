@@ -32,7 +32,7 @@ def main():
     wb_repo.create(website)
 
     controller = Controller(wb_repo, website)
-    result = controller.websiteChecking()
+    result = controller.websiteChecking() #пососи
     print(result)
 
     # urlpatterns = [
