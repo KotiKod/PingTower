@@ -54,9 +54,17 @@
                         <input type="checkbox" name="check-type" value="dns">
                         <span>Проверка разрешения DNS имен</span>
                     </label>
+                    <!-- Добавленные кнопки -->
+                    <label class="switch-btn">
+                        <input type="checkbox" name="check-type" value="http-status">
+                        <span>Проверка http статуса</span>
+                    </label>
+                    <label class="switch-btn">
+                        <input type="checkbox" name="check-type" value="response-validation">
+                        <span>Проверка валидации ответа</span>
+                    </label>
                 </div>
             </div>
-
             <!-- Периодичность проверки -->
             <div class="interval-section">
                 <h5>Какой должен быть интервал между проверками?</h5>
@@ -69,3 +77,4 @@
     </div>
 </div>
 {% endblock %}
+
