@@ -12,3 +12,4 @@ class Website:
     ep_check: bool
     loading_check: bool
     validation: bool
+    time_period: int

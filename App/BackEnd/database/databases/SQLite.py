@@ -66,6 +66,7 @@ class SQLite:
                         ep_check BOOLEAN NOT NULL,
                         loading_check BOOLEAN NOT NULL,
                         validation BOOLEAN NOT NULL,
+                        time_period INTEGER NOT NULL,
                         FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
                     )
                 ''')

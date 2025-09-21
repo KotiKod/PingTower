@@ -2,41 +2,56 @@ import sqlite3
 from typing import List, Dict, Any, Optional
 
 from App.BackEnd.database.Repository.RepositorySQLite.BaseRepository import BaseRepository
+from App.BackEnd.Models.Website import Website
 
 
 class WebsiteRepository(BaseRepository):
     """Репозиторий для работы с пользователями"""
 
-    def create(self, data: Dict[str, Any]) -> int:
-        try:
-            cursor = self._execute_query(
-                'INSERT INTO users (login, password) VALUES (?, ?)',
-                (data['login'], data['password'])
-            )
-            self._commit()
-            user_id = cursor.lastrowid
-            print(f"✅ Пользователь {data['login']} создан с ID: {user_id}")
-            return user_id
-        except sqlite3.IntegrityError:
-            print(f"❌ Пользователь с username {data['login']} уже существует")
-            raise
+    def create(self, website: Website) -> None:
+        """Сохраняет или обновляет website в базе данных"""
+        with sqlite3.connect(self.db) as conn:
+            cursor = conn.execute('''
+                INSERT INTO websites (url, user_id, status_http, dns_check, ssl_check, 
+                                     ep_check, loading_check, validation, time_period)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (website.url, website.user_id, website.status_http, website.dns_check,
+                  website.ssl_check, website.ep_check, website.loading_check,
+                  website.validation, website.time_period))
+            website.id = cursor.lastrowid
 
-    def get_by_id(self, user_id: int) -> Optional[Dict[str, Any]]:
-        cursor = self._execute_query('SELECT * FROM users WHERE id = ?', (user_id,))
-        user = cursor.fetchone()
-        return dict(user) if user else None
+            return
 
-    def get_all(self) -> List[Dict[str, Any]]:
-        cursor = self._execute_query('SELECT * FROM users ORDER BY id DESC')
-        return [dict(user) for user in cursor.fetchall()]
+    def get_websites(self, user_id: int) -> List[Website]:
+        """Получает все websites по ID пользователя"""
+        with sqlite3.connect(self.db) as conn:
+            cursor = conn.execute('''
+                SELECT id, url, user_id, status_http, dns_check, ssl_check, 
+                       ep_check, loading_check, validation, time_period
+                FROM websites WHERE user_id = ?
+                ORDER BY id
+            ''', (user_id,))
 
-    def update(self, id: int, data: Dict[str, Any]) -> bool:
-        try:
-            self._execute_query(
-                'UPDATE users SET login = ?, password = ? WHERE id = ?',
-                (data['login'], data['password'], id)
-            )
-            self._commit()
-            return True
-        except sqlite3.Error:
-            return False
+            websites = []
+            for row in cursor.fetchall():
+                website = Website(
+                    id=row[0],
+                    url=row[1],
+                    user_id=row[2],
+                    status_http=bool(row[3]),
+                    dns_check=bool(row[4]),
+                    ssl_check=bool(row[5]),
+                    ep_check=bool(row[6]),
+                    loading_check=bool(row[7]),
+                    validation=bool(row[8]),
+                    time_period=row[9]
+                )
+                websites.append(website)
+
+            return websites
+
+    def delete(self, website_id: int) -> bool:
+        """Удаляет website по ID"""
+        with sqlite3.connect(self.db) as conn:
+            cursor = conn.execute('DELETE FROM websites WHERE id = ?', (website_id,))
+            return cursor.rowcount > 0
