@@ -3,7 +3,7 @@ import threading
 from typing import Optional
 
 
-class DatabaseSingleton:
+class SQLite:
     """
     Синглтон ТОЛЬКО для управления подключением к базе данных.
     Не содержит бизнес-логики выполнения запросов.
@@ -54,13 +54,35 @@ class DatabaseSingleton:
                     )
                 ''')
 
-                # Таблица статей
+                # Таблица сайтов
                 conn.execute('''
                     CREATE TABLE IF NOT EXISTS websites (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         url TEXT NOT NULL,
-                        content TEXT NOT NULL,
                         user_id INTEGER NOT NULL,
+                        status_http BOOLEAN NOT NULL,
+                        dns_check BOOLEAN NOT NULL,
+                        ssl_check BOOLEAN NOT NULL,
+                        ep_check BOOLEAN NOT NULL,
+                        loading_check BOOLEAN NOT NULL,
+                        validation BOOLEAN NOT NULL,
+                        FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
+                    )
+                ''')
+
+                # Таблица проверок
+                conn.execute('''
+                    CREATE TABLE IF NOT EXISTS checks (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        url TEXT NOT NULL,
+                        user_id INTEGER NOT NULL,
+                        status_http BOOLEAN,
+                        dns_check BOOLEAN,
+                        ssl_check BOOLEAN,
+                        ep_check BOOLEAN,
+                        loading_check BOOLEAN,
+                        validation BOOLEAN,
+                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
                     )
                 ''')

@@ -1,13 +1,21 @@
 import asyncio
 
-from App.BackEnd.Services.StatusChecking.StatusHTTP import request_check
-from App.BackEnd.Services.StatusChecking.DNSCheck import resolve_url
+from App.BackEnd.Controllers.Controllers import Controller
+from App.BackEnd.database.Repository.RepositorySQLite.UserRepository import UserRepository
+from App.BackEnd.database.Repository.RepositorySQLite.WebsiteRepository import WebsiteRepository
+from App.BackEnd.database.databases.SQLite import SQLite
+
 
 def main():
-    url_check = 'https://www.djangoproject.com/download/'
-    resolver = asyncio.run(resolve_url(url_check))
-    print(request_check(url_check))
-    print(resolver)
+    db = SQLite("data.db")
+    db.initialize_database()
+
+    user_repo = UserRepository(db)
+    wb_repo = WebsiteRepository(db)
+
+    controller = Controller()
+
+    db.close()
 
 
 if __name__ == "__main__":
